@@ -1,1 +1,4 @@
-<p>tool-base64 works!</p>
+<div class="base64">
+    <textarea  class="base64__input" type="text" rows="5" (keyup)="plainTextHandler($event)" [value]="plainText"></textarea>
+    <textarea  class="base64__input" type="text" rows="5" (keyup)="encodedTextHandler($event)" [value]="encodedText"></textarea>
+</div>
