@@ -1,29 +1,29 @@
 <div class="content" role="main">
 
-  <h2>What do you want to do with your app?</h2>
+    <h2>What do you want to do with your app?</h2>
 
-  <input type="hidden" #selection>
+    <input type="hidden" #selection>
 
-  <div class="card-container">
-    <button class="card card-small" (click)="selection.value = 'pdftomiage'" tabindex="0">
-      <span>PDF To Image</span>
-    </button>
+    <div class="card-container">
+        <button class="card card-small" (click)="selection.value = 'pdftomiage'" tabindex="0">
+            <span>PDF To Image</span>
+        </button>
 
-    <button class="card card-small" (click)="selection.value = 'base64'" tabindex="0">
-      <span>Base64 Encoder/Decoder</span>
-    </button>
+        <button class="card card-small" (click)="selection.value = 'base64'" tabindex="0">
+            <span>Base64 Encoder/Decoder</span>
+        </button>
 
-    <button class="card card-small" (click)="selection.value = 'qr-bar'" tabindex="0">
-      <span> QR/Bar Code Gen/Scanner</span>
-    </button>
-  </div>
+        <button class="card card-small" (click)="selection.value = 'qr-bar'" tabindex="0">
+            span> QR/Bar Code Gen/Scanner</span>
+        </button>
+    </div>
 
-  <!-- Terminal -->
-  <div class="workspace" [ngSwitch]="selection.value">
-      <div class="workspace_element" *ngSwitchDefault><app-tool-pdf></app-tool-pdf></div>
-      <div class="workspace_element" *ngSwitchCase="'base64'"><app-tool-base64></app-tool-base64></div>
-      <div class="workspace_element" *ngSwitchCase="'qr-bar'"><app-tool-qbcode></app-tool-qbcode></div>
-  </div>
+    <!-- Terminal -->
+    <div class="workspace" [ngSwitch]="selection.value">
+        <div class="workspace_element" *ngSwitchDefault><app-tool-pdf></app-tool-pdf></div>
+        <div class="workspace_element" *ngSwitchCase="'base64'"><app-tool-base64></app-tool-base64></div>
+        <div class="workspace_element" *ngSwitchCase="'qr-bar'"><app-tool-qbcode></app-tool-qbcode></div>
+    </div>
 
 </div>
 
