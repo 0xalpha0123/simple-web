@@ -15,7 +15,7 @@ import { ToolQbcodeComponent } from './components/tool/qbcode/tool-qbcode.compon
     AppComponent,
     ToolPdfComponent,
     ToolBase64Component,
-    ToolQbcodeComponent
+    ToolQbcodeComponent,
   ],
   imports: [
     BrowserModule,
