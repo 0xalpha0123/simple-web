@@ -1,3 +1,96 @@
-<button class="card card-small">
-    <span> QR/Bar Code Gen/Scanner</span>
-</button>
+<div class="container">
+    <button class="card card__small" (click)="handleScanner()">
+        <span> QR / BAR Code Scanner</span>
+    </button>
+    <div *ngIf="!scanEnable">
+        <div class="generator__qrcode">
+            <form>
+                <div class="form-group">
+                    <label for="qrcode-input">QR Code</label>
+                    <textarea type="text" class="form-control" id="qrcode-input" aria-describedby="qrcode-input" rows="8" (keyup)="qrcodeHandler($event)" [value]="qrcode"></textarea>
+                </div>
+            </form>
+            <div>
+                <ngx-kjua
+                    [text]="qrcode"
+                    (minVersion)="version"
+                >
+                </ngx-kjua>
+            </div>
+        </div>
+        <div class="generator__barcode">
+            <form>
+                <div class="form-group">
+                    <label for="bar-code">Bar Code</label>
+                    <input type="text" class="form-control" id="bar-code" aria-describedby="barcode-input" (keyup)="barcodeHandler($event)" [value]="barcode" maxlength = "20">
+                </div>
+            </form>
+            <div>
+                <ngx-barcode 
+                    [bc-value]="barcode" >
+                </ngx-barcode>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="scanEnable">
+        <div [hidden]="!hasDevices">
+        
+            <header>
+                <mat-form-field appearance="fill">
+                    <mat-select [value]="deviceSelected" (valueChange)="onDeviceSelectChange($event)">
+                    <mat-option value="">No Device Selected</mat-option>
+                    <mat-option *ngFor="let device of availableDevices" [value]="device.deviceId">{{device.label}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </header>
+        
+            <section class="results" *ngIf="qrResultString">
+                <div class="results__container">
+                    <small>Result</small>
+                    <strong>{{ qrResultString }}</strong>
+                </div>
+            </section>
+        
+            <zxing-scanner [torch]="torchEnabled" [device]="deviceCurrent" (deviceChange)="onDeviceChange($event)" (scanSuccess)="onCodeResult($event)"
+                [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
+                (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
+        
+        </div>
+            
+        <ng-container *ngIf="hasPermission === undefined">
+        
+            <h2>Waiting for permissions.</h2>
+        
+            <blockquote>
+                If your device does not has cameras, no permissions will be asked.
+            </blockquote>
+        
+        </ng-container>
+        
+        <ng-container *ngIf="hasPermission === false">
+        
+            <h2>You denied the camera permission, we can't scan anything without it. 😪</h2>
+        
+        </ng-container>
+        
+        <ng-container *ngIf="hasDevices === undefined">
+        
+            <h2>Couldn't check for devices.</h2>
+        
+            <blockquote>
+                This may be caused by some security error.
+            </blockquote>
+            
+        </ng-container>
+            
+        <ng-container *ngIf="hasDevices === false">
+        
+            <h2>No devices were found.</h2>
+        
+            <blockquote>
+            I believe your device has no media devices attached to.
+            </blockquote>
+        
+        </ng-container>
+    </div>
+</div>
