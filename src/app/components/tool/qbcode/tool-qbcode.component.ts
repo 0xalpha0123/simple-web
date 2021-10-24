@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BarcodeFormat } from '@zxing/library';
 import { BehaviorSubject } from 'rxjs';
-import { AppInfoDialogComponent } from '../app-info-dialog/app-info-dialog.component';
-
 
 @Component({
     selector: 'app-tool-qbcode',

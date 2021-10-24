@@ -1,2 +1,39 @@
 <label for="formFile" class="form-label"> Please Select File:</label>
 <input class="form-control" type="file" id="upload-doc" accept=".pdf"  (change)="uploadFile($event)">
+<div>
+    <div class="page-div" *ngIf="totalPages != 0">
+        <button (click)="previous()">
+          Previous
+        </button>
+        <p class="pagescount">Pages - {{currentpage}} of {{totalPages}}</p>
+        <button (click)="next()">
+         Next
+        </button>
+        <button (click)="fit()">
+          Fit
+        </button>
+        <button (click)="crop()">
+            Crop
+        </button>
+        <button (click)="crop()">
+            Download
+        </button>
+        <button (click)="reset()" *ngIf="isCropImage">
+            Reset
+        </button>
+    </div>
+    <div style="height: 800px;">
+        <pdf-viewer 
+            class="pdf-container"
+            [src]="pdfSrc" 
+            [render-text]="true" 
+            [page]="currentpage"  
+            [show-all]="false" 
+            [original-size]="true" 
+            [fit-to-page]="true" 
+            (after-load-complete)="afterLoadComplete($event)" 
+            style="display: block;"
+        ></pdf-viewer>
+    </div>
+    <div style="display: none;"><img id="cropper-img"></div>
+</div>

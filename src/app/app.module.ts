@@ -10,9 +10,6 @@ import { ToolPdfComponent } from './components/tool/pdf/tool-pdf.component';
 import { ToolBase64Component } from './components/tool/base64/tool-base64.component';
 import { ToolQbcodeComponent } from './components/tool/qbcode/tool-qbcode.component';
 
-import { NgxKjuaModule } from 'ngx-kjua';
-import { NgxBarcodeModule } from 'ngx-barcode';
-
 import { AppUiModule } from './app-ui.module';
 
 @NgModule({
@@ -32,8 +29,6 @@ import { AppUiModule } from './app-ui.module';
             // or after 30 seconds (whichever comes first).
             registrationStrategy: 'registerWhenStable:30000'
         }),
-        NgxKjuaModule,
-        NgxBarcodeModule,
         AppUiModule
     ],
     providers: [],
