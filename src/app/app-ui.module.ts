@@ -11,27 +11,32 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { NgxKjuaModule } from 'ngx-kjua';
+import { NgxBarcodeModule } from 'ngx-barcode';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 const UI_MODULES = [
 
-  // Angular
-  BrowserAnimationsModule,
-  FormsModule,
+    // Angular
+    BrowserAnimationsModule,
+    FormsModule,
 
-  // Material
-  MatDialogModule,
-  MatListModule,
-  MatTooltipModule,
-  MatButtonModule,
-  MatFormFieldModule,
-  MatSelectModule,
-  MatInputModule,
-  MatMenuModule,
-  MatIconModule,
+    // Material
+    MatDialogModule,
+    MatListModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatMenuModule,
+    MatIconModule,
 
-  // Local
-  ZXingScannerModule,
-
+    // Local
+    NgxKjuaModule,
+    NgxBarcodeModule,
+    ZXingScannerModule,
+    PdfViewerModule,
 ];
 
 @NgModule({ exports: UI_MODULES })
