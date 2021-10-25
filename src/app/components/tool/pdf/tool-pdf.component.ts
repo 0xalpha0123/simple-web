@@ -41,13 +41,11 @@ export class ToolPdfComponent implements OnInit {
 
     public afterLoadComplete(pdf: any) {
         this.totalPages = pdf.numPages;
-        console.log($(".page"))
         $(".page").css('height', 'unset')
         $(".page").css('width', 'unset')
     }
 
     public fit() {
-        console.log($(".page"))
         $(".page").css('height', '')
         $(".page").css('width', '')
     }
@@ -81,7 +79,6 @@ export class ToolPdfComponent implements OnInit {
             $('#cropper-img').addClass('ready');
             this.isCropImage = true
             let cropImg: any = document.getElementById('cropper-img');
-            console.log(cropImg)
             this.cropper = new Cropper(cropImg, {
                 ready: (e) => {
                     let cropper = this.cropper;
@@ -92,10 +89,11 @@ export class ToolPdfComponent implements OnInit {
         })
       }
      
-      public download(canvas: any) {
+      public download() {
         var link = document.createElement('a');
         link.download = "my-image.png";
         link.href = this.imageBase64;
+        console.log('link', link)
         link.click();
       }
 
