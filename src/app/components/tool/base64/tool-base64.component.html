@@ -1,4 +1,7 @@
-<div class="base64">
-    <textarea class="form-control base64__input" type="text" rows="5" (keyup)="plainTextHandler($event)" [value]="plainText"></textarea>
-    <textarea class="form-control base64__input" type="text" rows="5" (keyup)="encodedTextHandler($event)" [value]="encodedText"></textarea>
+<div class="container base64">
+    <button class="card card__small" (click)="handleToggle()">
+        <span *ngIf="!isEncode">Encode to Base64</span>
+        <span *ngIf="isEncode">Decode to String</span>
+    </button>
+    <textarea class="form-control base64__input" type="text" rows="5" (keyup)="handleChange($event)" [value]="text"></textarea>
 </div>

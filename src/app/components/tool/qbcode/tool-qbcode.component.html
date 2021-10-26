@@ -2,8 +2,12 @@
     <button class="card card__small" (click)="handleScanner()">
         <span> QR / BAR Code Scanner</span>
     </button>
+    <button class="card card__small" (click)="handleToggle()">
+        <span *ngIf="isQRCode"> BAR Code Generator</span>
+        <span *ngIf="!isQRCode"> QR Code Scanner</span>
+    </button>
     <div *ngIf="!scanEnable">
-        <div class="generator__qrcode">
+        <div *ngIf="isQRCode" class="generator__qrcode">
             <form>
                 <div class="form-group">
                     <label for="qrcode-input">QR Code</label>
@@ -18,7 +22,7 @@
                 </ngx-kjua>
             </div>
         </div>
-        <div class="generator__barcode">
+        <div *ngIf="!isQRCode" class="generator__barcode">
             <form>
                 <div class="form-group">
                     <label for="bar-code">Bar Code</label>

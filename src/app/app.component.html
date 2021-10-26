@@ -1,6 +1,6 @@
 <div class="content" role="main">
 
-    <h2>What do you want to do with your app?</h2>
+    <h2 class="header-title">What do you want to do with your app?</h2>
 
     <input type="hidden" #selection>
 
@@ -10,7 +10,7 @@
         </button>
 
         <button class="card card-small" (click)="selection.value = 'base64'" tabindex="0">
-            <span>Base64 Encoder/Decoder</span>
+            <span>Base64 Encode/Decode</span>
         </button>
 
         <button class="card card-small" (click)="selection.value = 'qr-bar'" tabindex="0">

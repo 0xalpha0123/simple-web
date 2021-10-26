@@ -34,6 +34,7 @@ export class ToolQbcodeComponent implements OnInit {
     torchEnabled = false;
     torchAvailable$ = new BehaviorSubject<boolean>(false);
     tryHarder = false;
+    isQRCode = true;
 
     constructor(private readonly _dialog: MatDialog) { }
 
@@ -83,5 +84,9 @@ export class ToolQbcodeComponent implements OnInit {
   
     onTorchCompatible(isCompatible: boolean): void {
         this.torchAvailable$.next(isCompatible || false);
+    }
+
+    handleToggle() {
+        this.isQRCode = !this.isQRCode;
     }
 }
