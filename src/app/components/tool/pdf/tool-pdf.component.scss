@@ -22,3 +22,46 @@
     color: wheat;
     font-weight: 500;
 }
+
+.card {
+    border-radius: 4px;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+    background-color: rgba(255, 0, 0, 0.8);
+    border: none;
+    color: wheat;
+    font-weight: 500;
+
+    &__wide {
+        height: 16px;
+        margin-bottom: 20px;
+        width: 100%;
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+            cursor: pointer;
+        }
+    }
+
+    &__small {
+        height: 16px;
+        margin-bottom: 20px;
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+            cursor: pointer;
+        }
+    }
+}
+
+.pagescount {
+    color: wheat;
+    font-weight: 500;
+}

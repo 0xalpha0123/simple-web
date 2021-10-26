@@ -17,6 +17,8 @@ export class ToolPdfComponent implements OnInit {
     public isCropImage: Boolean = false;
     public cropper: any = null;
     public imageBase64: string = '';
+    public isDownloading: Boolean = false;
+    public fileName: string = '';
 
     constructor() { }
 
@@ -26,16 +28,18 @@ export class ToolPdfComponent implements OnInit {
     public uploadFile(event:any) {
         this.currentpage = 1;
         this.totalPages = 0;
+        this.fileName = '';
         let $img: any = document.querySelector('#upload-doc');
         if(event.target.files[0].type == 'application/pdf'){
-        if (typeof (FileReader) !== 'undefined') {
-            let reader = new FileReader();
-            reader.onload = (e: any) => {
-                this.pdfSrc = e.target.result;
-            };
-            this.isPdfUploaded = true;
-            reader.readAsArrayBuffer($img.files[0]);
-        }
+            if (typeof (FileReader) !== 'undefined') {
+                let reader = new FileReader();
+                reader.onload = (e: any) => {
+                    this.pdfSrc = e.target.result;
+                };
+                this.isPdfUploaded = true;
+                reader.readAsArrayBuffer($img.files[0]);
+                this.fileName = $img.files[0].name;
+            }
         } else{
             alert('Please upload pdf file')
         }
@@ -46,12 +50,13 @@ export class ToolPdfComponent implements OnInit {
     }
      
     public async download() {
-        // await this.processPdf();
+        this.isDownloading = true;
         while(this.currentpage <= this.totalPages) {
             // console.log(this.currentpage)
             this.currentpage = this.currentpage + 1;
             await this.processPdf();
         }
+        this.isDownloading = false;
     }
 
     public async processPdf() {
@@ -73,7 +78,7 @@ export class ToolPdfComponent implements OnInit {
                 }
             });
             var link = document.createElement('a');
-            link.download = "my-image.png";
+            link.download = `${this.fileName}-${this.currentpage - 1}.png`;
             link.href = this.imageBase64;
             link.click();
         })
