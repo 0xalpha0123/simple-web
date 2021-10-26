@@ -1,12 +1,9 @@
 <div class="container">
-    <label for="formFile" class="form-label"> Please Select File:</label>
-    <input class="form-control" type="file" id="upload-doc" accept=".pdf"  (change)="uploadFile($event)">
+    <input class="form-control" type="file" id="upload-doc" accept=".pdf" hidden (change)="uploadFile($event)">
+    <button id="btnBrowse" name="btnBrowse" onclick="document.getElementById('upload-doc').click();" class="card card__wide" ><span class="hide-on-mobile">Please Select File</span></button>
     <div>
         <div class="page-div" *ngIf="totalPages != 0">
-            <p class="pagescount">Current Pages - {{currentpage}} of {{totalPages}}</p>
-            <button (click)="download()">
-                Download
-            </button>
+            <button style="margin-bottom: 0px;" id="btnBrowse" name="btnBrowse" (click)="download()" class="card card__wide" ><span class="hide-on-mobile">Total Page: {{totalPages}}: {{isDownloading ?  'Page ' + currentpage + ' Downloading...': 'Download as Image'}}</span></button>
         </div>
         <div>
             <pdf-viewer 
