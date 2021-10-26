@@ -7,23 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolBase64Component implements OnInit {
 
-  public plainText: string = '';
+  public text: string = '';
   public encodedText: string = '';
+  public isEncode: any = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  plainTextHandler(event: any) {
-    this.plainText = event.target.value;
-    this.encodedText = btoa(this.plainText);
-    console.log(this.encodedText)
+  handleChange(event: any) {
+    this.text = event.target.value;
   }
 
-  encodedTextHandler(event: any) {
-    this.encodedText = event.target.value;
-    this.plainText = atob(this.encodedText);
+  handleToggle() {
+    this.isEncode = !this.isEncode;
+    if (this.isEncode) {
+      this.text = btoa(this.text);
+    } else {
+      this.text = atob(this.text);
+    }
   }
 
 }

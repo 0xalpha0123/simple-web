@@ -4,8 +4,6 @@
 
 .card {
     border-radius: 4px;
-    border: 1px solid #eee;
-    background-color: #fafafa;
     padding: 25px;
     display: flex;
     flex-direction: row;
@@ -14,6 +12,10 @@
     transition: all 0.2s ease-in-out;
     line-height: 24px;
     width: 100%;
+    background-color: rgba(255, 0, 0, 0.8);
+    border: none;
+    color: wheat;
+    font-weight: 500;
 
     &__small {
         height: 16px;
@@ -25,6 +27,13 @@
             cursor: pointer;
         }
     }
+}
+
+.form-control {
+    background-color: #4f221f;
+    border: none;
+    color: wheat;
+    font-weight: 500;
 }
 
 /* Responsive Styles */

@@ -14,6 +14,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { NgxKjuaModule } from 'ngx-kjua';
 import { NgxBarcodeModule } from 'ngx-barcode';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 
 const UI_MODULES = [
 
@@ -31,6 +32,7 @@ const UI_MODULES = [
     MatInputModule,
     MatMenuModule,
     MatIconModule,
+    MatSlideToggleModule,
 
     // Local
     NgxKjuaModule,

@@ -24,6 +24,8 @@ export class ToolPdfComponent implements OnInit {
     }
 
     public uploadFile(event:any) {
+        this.currentpage = 1;
+        this.totalPages = 0;
         let $img: any = document.querySelector('#upload-doc');
         if(event.target.files[0].type == 'application/pdf'){
         if (typeof (FileReader) !== 'undefined') {
@@ -41,36 +43,20 @@ export class ToolPdfComponent implements OnInit {
 
     public afterLoadComplete(pdf: any) {
         this.totalPages = pdf.numPages;
-        $(".page").css('height', 'unset')
-        $(".page").css('width', 'unset')
-    }
-
-    public fit() {
-        $(".page").css('height', '')
-        $(".page").css('width', '')
-    }
-    
-    public previous() {
-        if (this.currentpage > 0) {
-            if (this.currentpage == 1) {
-                this.currentpage = this.totalPages;
-            } else {
-                this.currentpage--;
-            }
-        }
     }
      
-    public next() {
-        if (this.totalPages > this.currentpage) {
-            this.currentpage = this.currentpage + 1 ;
-        } else {
-            this.currentpage = 1;
+    public async download() {
+        // await this.processPdf();
+        while(this.currentpage <= this.totalPages) {
+            // console.log(this.currentpage)
+            this.currentpage = this.currentpage + 1;
+            await this.processPdf();
         }
     }
 
-    public crop() {
-        html2canvas(document.querySelector("canvas") as HTMLElement).then((canvas: any) => {
-
+    public async processPdf() {
+        await html2canvas(document.querySelector("canvas") as HTMLElement).then((canvas: any) => {
+            console.log(this.currentpage)
             let ctx = canvas.getContext('2d');
             ctx.scale(3, 3);
             let image = canvas.toDataURL("image/png").replace("image/png", "image/png");
@@ -86,21 +72,10 @@ export class ToolPdfComponent implements OnInit {
                 crop: (e) => {
                 }
             });
+            var link = document.createElement('a');
+            link.download = "my-image.png";
+            link.href = this.imageBase64;
+            link.click();
         })
       }
-     
-      public download() {
-        var link = document.createElement('a');
-        link.download = "my-image.png";
-        link.href = this.imageBase64;
-        console.log('link', link)
-        link.click();
-      }
-
-      public reset() {
-        this.isCropImage = false;
-        this.cropper.clear();
-        this.cropper.destroy();
-      }
-
 }

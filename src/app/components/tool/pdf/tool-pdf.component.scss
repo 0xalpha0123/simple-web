@@ -3,10 +3,22 @@
     margin-bottom: 20px;
     align-items: baseline;
     margin-top: 20px;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .page {
     width: '' !important;
     height: '' !important;
+}
+
+.form-label {
+    color: wheat;
+    font-weight: 500;
+}
+
+.form-control {
+    background-color: #4f221f;
+    border: none;
+    color: wheat;
+    font-weight: 500;
 }
